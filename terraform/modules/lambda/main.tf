@@ -4,7 +4,11 @@ resource "aws_lambda_function" "data_processor" {
   runtime       = "nodejs14.x"
   handler       = "index.handler" # index.js -> exporting handler function as "handler"
 
-  filename         = "${path.module}/function.zip"
+  filename = "${path.module}/function.zip"
+
+  # The source_code_hash attribute is used to determine if the function's deployment package has changed.
+  # If the source_code_hash is provided, then the function will only be updated if the hash of the current file does not match the hash that is provided.
+  # This helps to prevent unnecessary updates to the function when no changes have been made to the deployment package.
   source_code_hash = filebase64sha256("${path.module}/function.zip")
 
   # IAM role that the Lambda function assumes
