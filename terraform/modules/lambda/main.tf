@@ -47,6 +47,7 @@ resource "aws_iam_role_policy" "lambda_policy" {
         Effect   = "Allow",
         Resource = "arn:aws:s3:::${var.bucket_name}/*",
       },
+      # Permission to write logs to CloudWatch
       {
         Action = [
           "logs:CreateLogGroup",
