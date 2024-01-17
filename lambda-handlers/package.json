@@ -4,7 +4,7 @@
   "description": "A simple AWS Lambda function",
   "main": "index.js",
   "scripts": {
-    "zip": "zip -r function.zip index.js node_modules"
+    "zip": "zip -r function.zip . && mv function.zip ../terraform/modules/lambda/function.zip"
   },
   "author": "Tiger Abrodi",
   "license": "ISC"
