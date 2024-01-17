@@ -24,3 +24,11 @@ module "s3" {
   source         = "./modules/s3"
   s3_bucket_name = var.s3_bucket_name
 }
+
+module "lambda_function" {
+  source = "./modules/lambda"
+
+  bucket_name      = var.s3_bucket_name
+  function_name    = var.lambda_function_name
+  lambda_role_name = var.lambda_role_name
+}
