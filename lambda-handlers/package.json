@@ -1,0 +1,11 @@
+{
+  "name": "lambda-function",
+  "version": "1.0.0",
+  "description": "A simple AWS Lambda function",
+  "main": "index.js",
+  "scripts": {
+    "zip": "zip -r function.zip index.js node_modules"
+  },
+  "author": "Tiger Abrodi",
+  "license": "ISC"
+}
