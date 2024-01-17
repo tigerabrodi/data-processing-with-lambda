@@ -15,3 +15,5 @@ resource "aws_s3_bucket_acl" "lambda_bucket_acl" {
   bucket = aws_s3_bucket.lambda_processor_bucket.id
   acl    = "private"
 }
+
+

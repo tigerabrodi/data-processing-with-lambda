@@ -31,4 +31,5 @@ module "lambda_function" {
   bucket_name      = var.s3_bucket_name
   function_name    = var.lambda_function_name
   lambda_role_name = var.lambda_role_name
+  bucket_id        = module.s3.s3_bucket_id
 }

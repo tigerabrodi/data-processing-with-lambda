@@ -50,3 +50,24 @@ resource "aws_iam_role_policy" "lambda_policy" {
     ],
   })
 }
+
+resource "aws_lambda_permission" "allow_s3_to_invoke" {
+  statement_id  = "AllowExecutionFromS3Bucket"
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.data_processor.function_name
+  principal     = "s3.amazonaws.com"
+  source_arn    = "arn:aws:s3:::${var.bucket_name}"
+}
+
+
+resource "aws_s3_bucket_notification" "lambda_bucket_notification" {
+  bucket = var.bucket_id
+
+  lambda_function {
+    lambda_function_arn = aws_lambda_function.data_processor.arn
+    events              = ["s3:ObjectCreated:*"]
+  }
+
+  # Depends on is important to ensure the Lambda permission is in place
+  depends_on = [aws_lambda_permission.allow_s3_to_invoke]
+}
