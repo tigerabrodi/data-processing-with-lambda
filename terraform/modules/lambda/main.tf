@@ -47,9 +47,19 @@ resource "aws_iam_role_policy" "lambda_policy" {
         Effect   = "Allow",
         Resource = "arn:aws:s3:::${var.bucket_name}/*",
       },
+      {
+        Action = [
+          "logs:CreateLogGroup",
+          "logs:CreateLogStream",
+          "logs:PutLogEvents"
+        ],
+        Effect   = "Allow",
+        Resource = "arn:aws:logs:*:*:*"
+      }
     ],
   })
 }
+
 
 resource "aws_lambda_permission" "allow_s3_to_invoke" {
   statement_id  = "AllowExecutionFromS3Bucket"
