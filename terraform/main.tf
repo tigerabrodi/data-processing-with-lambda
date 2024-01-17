@@ -1,8 +1,8 @@
 terraform {
   cloud {
-    organization = "tiger_projects"
+    organization = "{your-organization}"
     workspaces {
-      name = "data-processing-with-lambda"
+      name = "{your-workspace}"
     }
   }
 
